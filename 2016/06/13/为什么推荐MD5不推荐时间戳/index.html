@@ -1,0 +1,659 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…
+MD5是一种内容摘要算法，也就是根据内容而定结果，如果内容没变，md5戳也就不会变。
+时间戳由三部分组成，第一部分即是文件的摘要信息（即是文件创建时间修改时间最后一次访问时间这样）
+
+以MD5戳为静态资源的好处：
+线上的静态资源不是同名文件覆盖，而是文件名加hash的冗余，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么推荐MD5不推荐时间戳？">
+<meta property="og:url" content="http://www.oplinjie.cn/2016/06/13/为什么推荐MD5不推荐时间戳/index.html">
+<meta property="og:site_name" content="oplinjie - blog">
+<meta property="og:description" content="Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…
+MD5是一种内容摘要算法，也就是根据内容而定结果，如果内容没变，md5戳也就不会变。
+时间戳由三部分组成，第一部分即是文件的摘要信息（即是文件创建时间修改时间最后一次访问时间这样）
+
+以MD5戳为静态资源的好处：
+线上的静态资源不是同名文件覆盖，而是文件名加hash的冗余，">
+<meta property="og:updated_time" content="2016-07-09T17:15:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么推荐MD5不推荐时间戳？">
+<meta name="twitter:description" content="Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…
+MD5是一种内容摘要算法，也就是根据内容而定结果，如果内容没变，md5戳也就不会变。
+时间戳由三部分组成，第一部分即是文件的摘要信息（即是文件创建时间修改时间最后一次访问时间这样）
+
+以MD5戳为静态资源的好处：
+线上的静态资源不是同名文件覆盖，而是文件名加hash的冗余，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.oplinjie.cn/2016/06/13/为什么推荐MD5不推荐时间戳/"/>
+
+  <title> 为什么推荐MD5不推荐时间戳？ | oplinjie - blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?2dab5cfc1b84036de475eb7abd9bce4f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">oplinjie - blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">about frontend</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                为什么推荐MD5不推荐时间戳？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-13T00:52:21+08:00" content="2016-06-13">
+              2016-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/13/为什么推荐MD5不推荐时间戳/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/13/为什么推荐MD5不推荐时间戳/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…"><a href="#Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…" class="headerlink" title="Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…"></a>Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…</h3><blockquote>
+<p>MD5是一种内容摘要算法，也就是根据内容而定结果，如果内容没变，md5戳也就不会变。</p>
+<p>时间戳由三部分组成，第一部分即是文件的摘要信息（即是文件创建时间修改时间最后一次访问时间这样）</p>
+</blockquote>
+<h3 id="以MD5戳为静态资源的好处："><a href="#以MD5戳为静态资源的好处：" class="headerlink" title="以MD5戳为静态资源的好处："></a>以MD5戳为静态资源的好处：</h3><ul>
+<li>线上的静态资源不是同名文件覆盖，而是文件名加hash的冗余，所以可以先上线静态资源，再上线html页面，不存在间隙间隔（老版本的静态文件依然留在服务器上，新版本的静态资源文件重新上线）；</li>
+<li>遇到问题回滚版本的时候，无需回滚静态资源，只需回滚页面即可，这个时候之前的文件是浏览器可能缓存过的，所以不需要再去服务端获取资源；</li>
+<li>由于静态资源版本号是文件内容的hash，因此所有静态资源可以开启永久强缓存，只有更新了内容的静态资源文件才会缓存失效，缓存利用率大增；</li>
+<li>修改静态资源后会在线上产生新的文件，一个文件对应一个版本，因此不会受到构造cdn缓存形式的攻击；</li>
+<li>如果只是往文件修改注释的话or加个空行空格，时间戳也会更新，但是这个时候并不需要更新，而是像fis一样对文件进行压缩，（压缩算法可能会去掉注释之类的），然后再去用MD5算法生成MD5戳，这种情况下并不会对文件进行更新文件名，也是我们所需要的。</li>
+</ul>
+<h3 id="使用时间戳问题："><a href="#使用时间戳问题：" class="headerlink" title="使用时间戳问题："></a>使用时间戳问题：</h3><ul>
+<li>用加时间戳方式可以欺骗浏览器那是一个新的URL从而去重新获取，但是可能在CDN层面上，所用的策略有多种，有些CDN认为这是一个旧的URL，而返回旧文件的缓存，这可能带来问题。</li>
+</ul>
+<blockquote>
+<p>Fis的总体思想类似于rails的assets pipeline。</p>
+</blockquote>
+<h3 id="Rails前端部署："><a href="#Rails前端部署：" class="headerlink" title="Rails前端部署："></a>Rails前端部署：</h3><ul>
+<li>所有的静态资源都打包集中在一个文件中，并且支持用插件来使coffee转换js，sass转换css等等，这样子的做法会使第一次加载的时候比较慢，但是跳转其他页面的时候可以很快渲染。</li>
+<li>Rails并不按需加载，当然是可设置的，集中在一个文件里面，即Application.js去require其他js，在开发环境下，使用assets pipeline去加载每一个js，但是在生产环境下，就是一个Application.js and Application.css.</li>
+<li>assets pipeline是靠后缀，例如a.js.coffee.erb，即是向程序外层erb转coffee再最终转向js这样的过程，然后对文件进行压缩操作，再用MD5算法或者sha256算法等对文件进行计算，最终得到一个字符串，并且生成一个manifest文件，用来详细记录文件的原始路径／目前命名／修改时间等等。关于依赖问题，提供image_url或者assets_url方法可以加载被解析后的URL。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/30/为什么使用 Virtual DOM性能会更好/" rel="next" title="为什么使用 Virtual DOM性能会更好">
+                <i class="fa fa-chevron-left"></i> 为什么使用 Virtual DOM性能会更好
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/site-pic.png"
+               alt="oplinjie" />
+          <p class="site-author-name" itemprop="name">oplinjie</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/oplinjie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/linjie71" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…"><span class="nav-number">1.</span> <span class="nav-text">Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以MD5戳为静态资源的好处："><span class="nav-number">2.</span> <span class="nav-text">以MD5戳为静态资源的好处：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用时间戳问题："><span class="nav-number">3.</span> <span class="nav-text">使用时间戳问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rails前端部署："><span class="nav-number">4.</span> <span class="nav-text">Rails前端部署：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oplinjie</span>
+</div>
+
+<div class="powered-by">
+   <a class="theme-link" href="http://hexo.io">Hexo</a> 
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'oplinjie';
+      var disqus_identifier = '2016/06/13/为什么推荐MD5不推荐时间戳/';
+      var disqus_title = "为什么推荐MD5不推荐时间戳？";
+      var disqus_url = 'http://www.oplinjie.cn/2016/06/13/为什么推荐MD5不推荐时间戳/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
