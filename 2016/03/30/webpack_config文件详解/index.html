@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="oplinjie, frontend, 前端开发" />
+  <meta name="keywords" content="webpack," />
 
 
 
@@ -84,12 +84,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="oplinjie - blog">
-<meta property="og:url" content="http://www.oplinjie.cn/index.html">
+<meta name="description" content="webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。
+
+安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack_config文件详解">
+<meta property="og:url" content="http://www.oplinjie.cn/2016/03/30/webpack_config文件详解/index.html">
 <meta property="og:site_name" content="oplinjie - blog">
+<meta property="og:description" content="webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。
+
+安装">
+<meta property="og:updated_time" content="2016-07-26T15:57:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oplinjie - blog">
+<meta name="twitter:title" content="webpack_config文件详解">
+<meta name="twitter:description" content="webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。
+
+安装">
 
 
 
@@ -110,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://www.oplinjie.cn/"/>
+  <link rel="canonical" href="http://www.oplinjie.cn/2016/03/30/webpack_config文件详解/"/>
 
-  <title> oplinjie - blog </title>
+  <title> webpack_config文件详解 | oplinjie - blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,9 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,9 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -244,225 +252,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/06/13/为什么推荐MD5不推荐时间戳/" itemprop="url">
-                  为什么推荐MD5不推荐时间戳？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-13T00:52:21+08:00" content="2016-06-13">
-              2016-06-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/13/为什么推荐MD5不推荐时间戳/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/13/为什么推荐MD5不推荐时间戳/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Fis中为项目中的静态资源添加md5版本号，为什么不直接使用时间戳更方便呢？使用MD5算法可能造成一定时间上或资源上的消耗…
-MD5是一种内容摘要算法，也就是根据内容而定结果，如果内容没变，md5戳也就不会变。
-时间戳由三部分组成，第一部分即是文件的摘要信息（即是文件创建时间修改时间最后一次访问时间
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/13/为什么推荐MD5不推荐时间戳/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/30/为什么使用Virtual Dom性能更好/" itemprop="url">
-                  为什么使用Virtual DOM性能会更好
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T00:52:21+08:00" content="2016-05-30">
-              2016-05-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/30/为什么使用Virtual Dom性能更好/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/为什么使用Virtual Dom性能更好/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          突然遇到这样一个问题，React使用Virtual DOM根据映射关系去操作真正的dom，使得性能大大提高，但是所有的改动都是不可避免地操作真实DOM，怎么性能就能提高呢？
-首先理清Virtual DOM的组成，它并没有完全实现DOM，只是保留了Element之间的层次关系和一些基本属性，我们都知道
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/30/为什么使用Virtual Dom性能更好/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/30/webpack_config文件详解/" itemprop="url">
-                  webpack_config文件详解
-                </a>
+                webpack_config文件详解
               
             
           </h1>
@@ -509,46 +299,110 @@ MD5是一种内容摘要算法，也就是根据内容而定结果，如果内�
       
 
       
-        
-          
-          
-webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。w
-          ...
+        <blockquote>
+<p>webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>  npm install –save-dev webpack webpack-dev-server</p>
+<h2 id="配置webpack-config-js"><a href="#配置webpack-config-js" class="headerlink" title="配置webpack_config.js"></a>配置webpack_config.js</h2><ul>
+<li><p>entry(页面文件输出配置)</p>
+<p>entry 当中是 js 文件引用的入口, 一般每个 entry 的属性对应一个文件</p>
+</li>
+<li><p>output(入口文件输出配置)</p>
+<p>path 可能对应文件路径, 也可能是从 url 访问的情况下的路径，filename 用来配置生成的文件名</p>
+<p> {</p>
+<pre><code>entry: {
+    page1: &quot;./page1&quot;,
+    //支持数组形式，将加载数组中的所有模块，但以最后一个模块作为输出
+    page2: [&quot;./entry1&quot;, &quot;./entry2&quot;]
+},
+output: {
+    path: &quot;dist/js/page&quot;,
+    filename: &quot;[name].bundle.js&quot;
+}
+</code></pre><p> }</p>
+</li>
+<li><p>module(加载器配置)</p>
+<p>module 当中主要配置 loaders,告知 webpack 每一种文件都需要使用什么加载器来处理，多个loader之间用“!”连接起来，如vue-vue; css-style-loader; js-babel</p>
+</li>
+<li><p>plugins(配置插件)</p>
+<p>例如使用extract-text-webpack-plugin(独立出css样式)该插件</p>
+<p>var ExtractTextPlugin = require(“extract-text-webpack-plugin”);<br>plugins: [</p>
+<pre><code>new ExtractTextPlugin(&quot;app.css&quot;, {
+  disable: false
+}),
+new ExtractTextPlugin(&quot;style.css&quot;, {allChunks: true})
+// 支持所有独立样式打包成一个css文件
+</code></pre><p>]</p>
+</li>
+<li><p>配置第三方插件，如jQuery</p>
+<p>plugins: [</p>
+<pre><code>new webpack.ProvidePlugin({
+    $: &quot;jquery&quot;,
+    jQuery: &quot;jquery&quot;,
+    &quot;window.jQuery&quot;: &quot;jquery&quot;
+}),
+ new webpack.optimize.CommonsChunkPlugin(&apos;vendor&apos;, &apos;vendor.js&apos;) //这是第三方库打包生成的文件
+</code></pre><p> ]</p>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>直接在页面引入 webpack 最终生成的页面脚本。</li>
+<li>打开<a href="http://localhost:8080/webpack-dev-server/，与http://localhost:8080一样，提示错误比较详细。Vue的话配置vue-hot-reload-api,react配置react-hot-loader可以随时自动刷新，不需要刷新页面，不过目前我测试的是vue，虽然会自动刷新，但是组件会再次加载进来，变成了双重。。。" target="_blank" rel="external">http://localhost:8080/webpack-dev-server/，与http://localhost:8080一样，提示错误比较详细。Vue的话配置vue-hot-reload-api,react配置react-hot-loader可以随时自动刷新，不需要刷新页面，不过目前我测试的是vue，虽然会自动刷新，但是组件会再次加载进来，变成了双重。。。</a></li>
+</ul>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/30/webpack_config文件详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag">#webpack</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/30/为什么使用Virtual Dom性能更好/" rel="prev" title="为什么使用Virtual DOM性能会更好">
+                为什么使用Virtual DOM性能会更好 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -556,6 +410,17 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -575,8 +440,17 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/site-pic.png"
@@ -639,6 +513,17 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置webpack-config-js"><span class="nav-number">2.</span> <span class="nav-text">配置webpack_config.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -735,6 +620,10 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -751,9 +640,9 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
 
     <script type="text/javascript">
       var disqus_shortname = 'oplinjie';
-      var disqus_identifier = 'index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2016/03/30/webpack_config文件详解/';
+      var disqus_title = "webpack_config文件详解";
+      var disqus_url = 'http://www.oplinjie.cn/2016/03/30/webpack_config文件详解/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -764,6 +653,8 @@ webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-de
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   
