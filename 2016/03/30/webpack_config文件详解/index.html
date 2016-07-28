@@ -94,7 +94,7 @@
 <meta property="og:description" content="webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。
 
 安装">
-<meta property="og:updated_time" content="2016-07-26T15:57:45.000Z">
+<meta property="og:updated_time" content="2016-07-28T02:17:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack_config文件详解">
 <meta name="twitter:description" content="webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。
@@ -309,45 +309,49 @@
 </li>
 <li><p>output(入口文件输出配置)</p>
 <p>path 可能对应文件路径, 也可能是从 url 访问的情况下的路径，filename 用来配置生成的文件名</p>
-<p> {</p>
-<pre><code>entry: {
-    page1: &quot;./page1&quot;,
-    //支持数组形式，将加载数组中的所有模块，但以最后一个模块作为输出
-    page2: [&quot;./entry1&quot;, &quot;./entry2&quot;]
-},
-output: {
-    path: &quot;dist/js/page&quot;,
-    filename: &quot;[name].bundle.js&quot;
-}
-</code></pre><p> }</p>
 </li>
+</ul>
+<pre><code>{
+    entry: {
+        page1: &quot;./page1&quot;,
+        //支持数组形式，将加载数组中的所有模块，但以最后一个模块作为输出
+        page2: [&quot;./entry1&quot;, &quot;./entry2&quot;]
+    },
+    output: {
+        path: &quot;dist/js/page&quot;,
+        filename: &quot;[name].bundle.js&quot;
+    }
+}
+</code></pre><ul>
 <li><p>module(加载器配置)</p>
 <p>module 当中主要配置 loaders,告知 webpack 每一种文件都需要使用什么加载器来处理，多个loader之间用“!”连接起来，如vue-vue; css-style-loader; js-babel</p>
 </li>
 <li><p>plugins(配置插件)</p>
 <p>例如使用extract-text-webpack-plugin(独立出css样式)该插件</p>
-<p>var ExtractTextPlugin = require(“extract-text-webpack-plugin”);<br>plugins: [</p>
-<pre><code>new ExtractTextPlugin(&quot;app.css&quot;, {
-  disable: false
-}),
-new ExtractTextPlugin(&quot;style.css&quot;, {allChunks: true})
-// 支持所有独立样式打包成一个css文件
-</code></pre><p>]</p>
-</li>
-<li><p>配置第三方插件，如jQuery</p>
-<p>plugins: [</p>
-<pre><code>new webpack.ProvidePlugin({
-    $: &quot;jquery&quot;,
-    jQuery: &quot;jquery&quot;,
-    &quot;window.jQuery&quot;: &quot;jquery&quot;
-}),
- new webpack.optimize.CommonsChunkPlugin(&apos;vendor&apos;, &apos;vendor.js&apos;) //这是第三方库打包生成的文件
-</code></pre><p> ]</p>
 </li>
 </ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<pre><code>var ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);
+plugins: [
+    new ExtractTextPlugin(&quot;app.css&quot;, {
+      disable: false
+    }),
+    new ExtractTextPlugin(&quot;style.css&quot;, {allChunks: true})
+    // 支持所有独立样式打包成一个css文件
+]
+</code></pre><ul>
+<li>配置第三方插件，如jQuery</li>
+</ul>
+<pre><code>plugins: [
+    new webpack.ProvidePlugin({
+        $: &quot;jquery&quot;,
+        jQuery: &quot;jquery&quot;,
+        &quot;window.jQuery&quot;: &quot;jquery&quot;
+    }),
+     new webpack.optimize.CommonsChunkPlugin(&apos;vendor&apos;, &apos;vendor.js&apos;) //这是第三方库打包生成的文件
+ ]
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
 <li>直接在页面引入 webpack 最终生成的页面脚本。</li>
-<li>打开<a href="http://localhost:8080/webpack-dev-server/，与http://localhost:8080一样，提示错误比较详细。Vue的话配置vue-hot-reload-api,react配置react-hot-loader可以随时自动刷新，不需要刷新页面，不过目前我测试的是vue，虽然会自动刷新，但是组件会再次加载进来，变成了双重。。。" target="_blank" rel="external">http://localhost:8080/webpack-dev-server/，与http://localhost:8080一样，提示错误比较详细。Vue的话配置vue-hot-reload-api,react配置react-hot-loader可以随时自动刷新，不需要刷新页面，不过目前我测试的是vue，虽然会自动刷新，但是组件会再次加载进来，变成了双重。。。</a></li>
+<li>打开<a href="http://localhost:8080/webpack-dev-server/" target="_blank" rel="external">http://localhost:8080/webpack-dev-server/</a> ，与<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> 一样，提示错误比较详细。Vue的话配置vue-hot-reload-api,react配置react-hot-loader可以随时自动刷新，不需要刷新页面，不过目前我测试的是vue，虽然会自动刷新，但是组件会再次加载进来，变成了双重。。。</li>
 </ul>
 
       
